@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayurvedic Wellness Center</title>
+    <!-- CSS styles would go here, omitted as requested -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        :root {
+            --primary-green: #a8d5a8;
+            --dark-green: #5a8a5a;
+            --light-yellow: #fff9c4;
+            --accent-blue: #84c1ff;
+            --text-dark: #333333;
+            --card-bg: #bae1e1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        
+        header {
+            background-color: var(--primary-green);
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--dark-green);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            display: inline-block;
+            animation: rotate 3s infinite alternate;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--dark-green);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #333;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: var(--dark-green);
+            transition: 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary-green), var(--light-yellow));
+            padding: 5rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.3s ease;
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            background-color: var(--dark-green);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1.6s ease;
+        }
+        
+        .hero-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .leaves {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .leaf {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: rgba(168, 213, 168, 0.3);
+            border-radius: 50% 0;
+            animation: falling 15s infinite linear;
+            opacity: 0.7;
+        }
+        
+        .leaf:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .leaf:nth-child(2) {
+            left: 30%;
+            animation-delay: 3s;
+        }
+        
+        .leaf:nth-child(3) {
+            left: 50%;
+            animation-delay: 6s;
+        }
+        
+        .leaf:nth-child(4) {
+            left: 70%;
+            animation-delay: 9s;
+        }
+        
+        .leaf:nth-child(5) {
+            left: 90%;
+            animation-delay: 12s;
+        }
+        
+        section {
+            padding: 5rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--dark-green);
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .card:hover .card-img img {
+            transform: scale(1.1);
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card-content h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .card-content p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .animation-container {
+            position: relative;
+            height: 400px;
+            margin: 4rem 0;
+            padding: auto;
+            left: 10%;
+            overflow: hidden;
+            
+        }
+        
+        .dosha-animation {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 150%;
+        }
+        
+        .dosha {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: pulse 5s infinite alternate;
+        }
+        
+        .vata {
+            background: linear-gradient(135deg, #a3d9ff, #7b68ee);
+            animation-delay: 0s;
+        }
+        
+        .pitta {
+            background: linear-gradient(135deg, #ff9a8b, #ff6b6b);
+            animation-delay: 1.5s;
+        }
+        
+        .kapha {
+            background: linear-gradient(135deg, #96fbc4, #5bb974);
+            animation-delay: 3s;
+        }
+        
+        .dosha h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .benefits {
+            background-color: var(--light-yellow);
+            padding: 5rem 1rem;
+        }
+        
+        .benefits-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        
+        .benefit-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .benefit-icon {
+            background-color: var(--primary-green);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 2rem;
+            flex-shrink: 0;
+        }
+        
+        .benefit-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--dark-green);
+        }
+        
+        .benefit-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .benefit-content p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .treatments {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 1rem;
+        }
+        
+        .treatment-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .treatment-card {
+            flex: 1 1 300px;
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .treatment-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .treatment-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .treatment-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .treatment-card:hover .treatment-img img {
+            transform: scale(1.1);
+        }
+        
+        .treatment-content {
+            padding: 1.5rem;
+        }
+        
+        .treatment-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark-green);
+        }
+        
+        .treatment-content p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .traditional-practices {
+            background-color: #f0f8ff;
+            padding: 5rem 1rem;
+        }
+        
+        .traditional-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .practice-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .practice-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .practice-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .practice-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .practice-card:hover .practice-img img {
+            transform: scale(1.1);
+        }
+        
+        .practice-content {
+            padding: 1.5rem;
+            background-color: var(--card-bg);
+        }
+        
+        .practice-content h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+            color: var(--dark-green);
+        }
+        
+        .practice-content p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .conditions {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 1rem;
+        }
+        
+        .condition-slider {
+            position: relative;
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+        
+        .condition-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .condition-slide {
+            min-width: 300px;
+            padding: 0 1rem;
+        }
+        
+        .condition-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .condition-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .condition-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .condition-content {
+            padding: 1.5rem;
+        }
+        
+        .condition-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark-green);
+        }
+        
+        .condition-content p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .slider-btn {
+            background-color: var(--dark-green);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .slider-btn:hover {
+            background-color: #3a5a3a;
+        }
+        
+        .herbal-remedies {
+            background-color: var(--light-yellow);
+            padding: 5rem 1rem;
+        }
+        
+        .herbal-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .remedy-accordion {
+            margin-top: 3rem;
+        }
+        
+        .accordion-item {
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .accordion-header {
+            background-color: var(--primary-green);
+            padding: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .accordion-header h3 {
+            font-size: 1.5rem;
+            color: var(--dark-green);
+        }
+        
+        .accordion-content {
+            background-color: white;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s, padding 0.5s;
+        }
+        
+        .accordion-content.active {
+            padding: 1.5rem;
+            max-height: 1000px;
+        }
+        
+        .accordion-content ul {
+            list-style-position: inside;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        .yoga-nutrition {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 1rem;
+        }
+        
+        .yoga-nutrition-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .yoga-section, .nutrition-section {
+            flex: 1 1 400px;
+        }
+        
+        .yoga-card, .nutrition-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+        
+        .yoga-card:hover, .nutrition-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .yoga-img, .nutrition-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .yoga-img img, .nutrition-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .yoga-card:hover .yoga-img img, .nutrition-card:hover .nutrition-img img {
+            transform: scale(1.1);
+        }
+        
+        .yoga-content, .nutrition-content {
+            padding: 1.5rem;
+        }
+        
+        .yoga-content h3, .nutrition-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark-green);
+        }
+        
+        .yoga-content p, .nutrition-content p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .cta {
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+            padding: 5rem 1rem;
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background-color: white;
+            color: var(--dark-green);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 3rem 1rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-green);
+        }
+        
+        .footer-col p, .footer-col a {
+            color: #bbb;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col a:hover {
+            color: var(--primary-green);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: #555;
+            border-radius: 50%;
+            color: white;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-green);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            text-align: center;
+            border-top: 1px solid #555;
+            color: #888;
+        }
+        .testimonials-container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background: rgb(255, 255, 255);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .section-title h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .testimonial-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .testimonial-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 15px;
+            text-align: center;
+        }
+        .testimonial-text {
+            font-size: 14px;
+            color: #666;
+        }
+        .author-img img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-top: 10px;
+        }
+        .author-info h4 {
+            margin: 10px 0 5px;
+            font-size: 18px;
+            color: #222;
+        }
+        .author-info p {
+            font-size: 14px;
+            color: #777;
+        }
+        .cta-btn{
+           display : grid;
+              place-items : center;
+            color: #3a5a3a;
+            
+        }
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        .accordion-content {
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+}
+.accordion-item.active .accordion-content {
+    max-height: 500px; /* A large enough value to fit most content */
+}
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes falling {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(1000px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+            100% {
+                transform: scale(1.1);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            }
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .benefit-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .benefit-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .dosha {
+                width: 150px;
+                height: 150px;
+                font-size: 0.9rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav>
+            <div class="logo">
+                Ayur<span>🍃</span>Wellness
+            </div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#treatments">Treatments</a>
+                <a href="#practices">Practices</a>
+                <a href="#conditions">Health</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="leaves">
+            <div class="leaf"></div>
+            <div class="leaf"></div>
+            <div class="leaf"></div>
+            <div class="leaf"></div>
+            <div class="leaf"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Discover the Ancient Wisdom of Ayurveda</h1>
+            <p>Balancing body, mind, and spirit through holistic healing practices rooted in 5,000 years of tradition</p>
+            <a href="#treatments" class="hero-btn">Explore Treatments</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-title">
+            <h2>About Ayurveda</h2>
+        </div>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-img">
+                    <img src="sushruta.jpeg" alt="Ayurvedic Philosophy">
+                </div>
+                <div class="card-content">
+                    <h3>Ancient Wisdom</h3>
+                    <p>Ayurveda is one of the world's oldest holistic healing systems, developed over 5,000 years ago in India. It's based on the belief that health and wellness depend on a delicate balance between the mind, body, and spirit.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="hollistic.jpeg" alt="Holistic Approach">
+                </div>
+                <div class="card-content">
+                    <h3>Holistic Approach</h3>
+                    <p>Unlike Western medicine that often focuses on symptom treatment, Ayurveda looks at the root causes of imbalance and addresses the whole person, considering their unique physical, mental, and spiritual makeup.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="care.jpeg" alt="Preventive Healthcare">
+                </div>
+                <div class="card-content">
+                    <h3>Preventive Healthcare</h3>
+                    <p>Ayurveda emphasizes prevention and encourages maintaining health through balance in life, proper diet, lifestyle, and the use of herbs - all tailored to an individual's unique constitution.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doshas Animation Section -->
+    <section class="animation-container">
+        <div class="dosha-animation">
+            <div class="dosha vata">
+                <h4>Vata</h4>
+                <p>Energy of movement, composed of Space and Air elements.</p>
+            </div>
+            <div class="dosha pitta">
+                <h4>Pitta</h4>
+                <p>Energy of digestion and metabolism, composed of Fire and Water elements.</p>
+            </div>
+            <div class="dosha kapha">
+                <h4>Kapha</h4>
+                <p>Energy of lubrication and structure, composed of Earth and Water elements.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="benefits-container">
+            <div class="section-title">
+                <h2>Benefits of Ayurveda</h2>
+            </div>
+            <img src="benunu.jpeg" alt="Ayurvedic Benefits" style="width: 100%; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+    </section>
+
+    <!-- Treatments Section -->
+    <section id="treatments" class="treatments">
+        <div class="section-title">
+            <h2>Our Ayurvedic Treatments</h2>
+        </div>
+        <div class="treatment-container">
+            <div class="treatment-card">
+                <div class="treatment-img">
+                    <img src="abhyanga.jpg" alt="Abhyanga Massage">
+                </div>
+                <div class="treatment-content">
+                    <h3>Abhyanga</h3>
+                    <p>A full-body massage using warm herbal oils tailored to your dosha. Improves circulation, relieves fatigue, provides stamina, enhances vision and nourishes the body.</p>
+                </div>
+            </div>
+            <div class="treatment-card">
+                <div class="treatment-img">
+                    <img src="shirodhara.png" alt="Shirodhara Treatment">
+                </div>
+                <div class="treatment-content">
+                    <h3>Shirodhara</h3>
+                    <p>A continuous stream of warm oil poured onto the forehead, producing a deeply relaxing effect. Relieves anxiety, stress, and headaches while promoting mental clarity.</p>
+                </div>
+            </div>
+            <div class="treatment-card">
+                <div class="treatment-img">
+                    <img src="panchakarma.jpg" alt="Panchakarma Cleanse">
+                </div>
+                <div class="treatment-content">
+                    <h3>Panchakarma</h3>
+                    <p>A comprehensive detoxification program involving massage, herbal treatments, diet, meditation, and other therapies designed to remove deep-seated toxins from the body.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Traditional Practices Section -->
+    <section id="practices" class="traditional-practices">
+        <div class="traditional-container">
+            <div class="section-title">
+                <h2>Traditional Practices</h2>
+            </div>
+            <div class="practice-grid">
+                <div class="practice-card">
+                    <div class="practice-img">
+                        <img src="meditate.jpg" alt="Meditation Practice">
+                    </div>
+                    <div class="practice-content">
+                        <h3>Meditation</h3>
+                        <p>Regular meditation practice helps calm the mind, reduce stress, and improve mental clarity. Learn ancient techniques tailored to your constitution.</p>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-img">
+                        <img src="pranayam.jpg" alt="Pranayama Breathing">
+                    </div>
+                    <div class="practice-content">
+                        <h3>Pranayama</h3>
+                        <p>Breathing exercises that control energy flow and enhance life force in the body. Improves respiratory functions and brings balance to the doshas.</p>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-img">
+                        <img src="happy.jpg" alt="Daily Routine">
+                    </div>
+                    <div class="practice-content">
+                        <h3>Dinacharya</h3>
+                        <p>Daily self-care routines including tongue scraping, oil pulling, self-massage, and specific bathing rituals that promote health and longevity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conditions Section -->
+    <section id="conditions" class="conditions">
+        <div class="section-title">
+            <h2>Health Conditions We Address</h2>
+        </div>
+        <div class="condition-slider">
+            <div class="condition-track">
+                <div class="condition-slide">
+                    <div class="condition-card">
+                        <div class="condition-img">
+                            <img src="pet.jpg" alt="Digestive Issues">
+                        </div>
+                        <div class="condition-content">
+                            <h3>Digestive Issues</h3>
+                            <p>Ayurvedic approaches to IBS, acid reflux, bloating, constipation, and other digestive concerns through diet, herbs, and lifestyle.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="condition-slide">
+                    <div class="condition-card">
+                        <div class="condition-img">
+                            <img src="stress.jpg" alt="Stress and Anxiety">
+                        </div>
+                        <div class="condition-content">
+                            <h3>Stress & Anxiety</h3>
+                            <p>Natural management of stress, anxiety, and associated conditions through herbs, meditation, and personalized daily routines.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="condition-slide">
+                    <div class="condition-card">
+                        <div class="condition-img">
+                            <img src="skin.jpg" alt="Skin Conditions">
+                        </div>
+                        <div class="condition-content">
+                            <h3>Skin Conditions</h3>
+                            <p>Holistic treatment for eczema, psoriasis, acne, and other skin issues addressing both internal imbalances and external care.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="condition-slide">
+                    <div class="condition-card">
+                        <div class="condition-img">
+                            <img src="joint.jpg" alt="Joint Pain">
+                        </div>
+                        <div class="condition-content">
+                            <h3>Joint Pain</h3>
+                            <p>Relieving arthritis, inflammation, and chronic joint pain through specialized therapies, herbs, and lifestyle modifications.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <button class="slider-btn prev">←</button>
+                <button class="slider-btn next">→</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Herbal Remedies Section -->
+    <section class="herbal-remedies">
+        <div class="herbal-container">
+            <div class="section-title">
+                <h2>Ayurvedic Herbal Remedies</h2>
+            </div>
+            <div class="remedy-accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Ashwagandha</h3>
+                        <span>+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Known as the "Indian Ginseng," Ashwagandha is used for:</p>
+                        <ul>
+                            <li>Reducing stress and anxiety</li>
+                            <li>Boosting immunity</li>
+                            <li>Improving concentration and mental clarity</li>
+                            <li>Increasing energy and stamina</li>
+                            <li>Supporting healthy sleep patterns</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Turmeric</h3>
+                        <span>+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>A powerful anti-inflammatory herb used for:</p>
+                        <ul>
+                            <li>Reducing inflammation</li>
+                            <li>Supporting joint health</li>
+                            <li>Improving digestion</li>
+                            <li>Purifying blood</li>
+                            <li>Promoting healthy skin</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Triphala</h3>
+                        <span>+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>A traditional formula of three fruits that supports:</p>
+                        <ul>
+                            <li>Digestive health and regular elimination</li>
+                            <li>Detoxification</li>
+                            <li>Eye health</li>
+                            <li>Immune function</li>
+                            <li>Skin rejuvenation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Yoga & Nutrition Section -->
+    <section class="yoga-nutrition">
+        <div class="section-title">
+            <h2>Yoga & Nutrition</h2>
+        </div>
+        <div class="yoga-nutrition-container">
+            <div class="yoga-section">
+                <div class="yoga-card">
+                    <div class="yoga-img">
+                        <img src="yoga.jpg" alt="Yoga Practice">
+                    </div>
+                    <div class="yoga-content">
+                        <h3>Ayurvedic Yoga</h3>
+                        <p>Yoga practices tailored to your specific dosha balance. We offer classes and personalized routines that address your unique constitution and health goals.</p>
+                    </div>
+                </div>
+                <div class="yoga-card">
+                    <div class="yoga-img">
+                        <img src="beni.jpg" alt="Yoga Benefits">
+                    </div>
+                    <div class="yoga-content">
+                        <h3>Benefits of Regular Practice</h3>
+                        <p>Regular yoga practice improves flexibility, strengthens muscles, enhances circulation, and creates harmony between mind and body, which is essential in Ayurvedic healing.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="nutrition-section">
+                <div class="nutrition-card">
+                    <div class="nutrition-img">
+                        <img src="diet.jpg" alt="Ayurvedic Diet">
+                    </div>
+                    <div class="nutrition-content">
+                        <h3>Dosha-Specific Diets</h3>
+                        <p>Learn which foods are best for your constitution. Our nutritional counseling helps you understand which tastes, textures, and food combinations create optimal balance.</p>
+                    </div>
+                </div>
+                <div class="nutrition-card">
+                    <div class="nutrition-img">
+                        <img src="cook.jpg" alt="Cooking Classes">
+                    </div>
+                    <div class="nutrition-content">
+                        <h3>Ayurvedic Cooking</h3>
+                        <p>Join our cooking classes to learn how to prepare delicious, healing meals using Ayurvedic principles, spices, and seasonal ingredients appropriate for your body type.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <div class="section-title">
+                <h2>Notable Pioneers</h2>
+            </div>
+            <div class="testimonial-wrapper">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Sushruta is the listed author of the Sushruta Samhita, considered to be one of the most important surviving ancient treatises on medicine. It is also considered a foundational text of Ayurveda.</p>
+                    <div class="author-img">
+                        <img src="sushruta.jpeg" alt="Sushruta">
+                    </div>
+                    <div class="author-info">
+                        <h4>Sushruta</h4>
+                        <p>Father Of Medicine</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Charaka was one of the principal contributors to Ayurveda, a system of medicine and lifestyle developed in ancient India. He is known as a physician who edited the medical treatise entitled Charaka Samhita.</p>
+                    <div class="author-img">
+                        <img src="charak.jpg" alt="Charaka">
+                    </div>
+                    <div class="author-info">
+                        <h4>Charaka</h4>
+                        <p>Author : Charaka Samhita</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Dhanvantari is revered in Hinduism as the god of medicine and Ayurveda, often depicted as a celestial being with four hands, and is considered an avatar of Vishnu. He is also seen as the "father of Ayurveda" and is believed to have introduced the ancient system of medicine to the human realm.</p>
+                    <div class="author-img">
+                        <img src="dhanvantari.jpg" alt="Dhanvantari">
+                    </div>
+                    <div class="author-info">
+                        <h4>Dhanvantari</h4>
+                        <p>God of Ayurveda</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-container">
+            <h2>Begin Your Healing Journey Today</h2>
+            <p>Take the first step toward holistic wellness with Ayurveda</p>
+            <a href="#contact" class="cta-btn">Schedule a Consultation</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="yoga-nutrition">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+        </div>
+        
+        <a href="contact.html" class="cta-btn">CLICK HERE</a>
+       
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>AyurWellness</h3>
+                <p>We are here to help modern wellness needs. We believe in treating the whole person - body, mind, and spirit.</p>
+                <div class="social-links">
+                    <a href="#">FB</a>
+                    <a href="#">IG</a>
+                    <a href="#">TW</a>
+                    <a href="#">YT</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Our Services</h3>
+                <a href="#">Ayurvedic Consultations</a>
+                <a href="#">Panchakarma Detox</a>
+                <a href="#">Massage Therapies</a>
+                <a href="#">Herbal Formulations</a>
+                <a href="#">Yoga & Meditation</a>
+                <a href="#">Nutritional Counseling</a>
+            </div>
+            <div class="footer-col">
+                <h3>Made by Yugank Manesh Mahale</h3>
+                <p>Research by : Gaurav Salian </p>
+                <p>Gaurav Sase</p>
+                <p>Nisarg Patil</p>
+                <p>Prabhanshu Dwivedi</p>
+                <p>S.E Mechanical , FR.crce</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 AyurWellness -by Yugank Mahale. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+       
+       document.addEventListener("DOMContentLoaded", function () {
+    const accordionHeaders = document.querySelectorAll(".accordion-header");
+
+    accordionHeaders.forEach(header => {
+        header.addEventListener("click", function () {
+            const accordionItem = this.parentElement;
+            const content = accordionItem.querySelector(".accordion-content");
+            const icon = this.querySelector("span");
+
+            // Close all other accordions
+            document.querySelectorAll(".accordion-item").forEach(item => {
+                if (item !== accordionItem) {
+                    item.classList.remove("active");
+                    item.querySelector(".accordion-content").style.maxHeight = "0px";
+                    item.querySelector("span").textContent = "+";
+                }
+            });
+
+            // Toggle active class
+            accordionItem.classList.toggle("active");
+
+            // Expand or collapse the content smoothly
+            if (accordionItem.classList.contains("active")) {
+                content.style.maxHeight = content.scrollHeight + "px"; // Expand
+                icon.textContent = "-";
+            } else {
+                content.style.maxHeight = "0px"; // Collapse
+                icon.textContent = "+";
+            }
+        });
+    });
+});
+
+
+    </script>
+</body>
+</html>
